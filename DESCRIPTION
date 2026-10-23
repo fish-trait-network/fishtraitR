@@ -1,5 +1,5 @@
 Type: Package
-Package: fish-traitR
+Package: fishtraitR
 Title: Access imputed traits for fishes
 Version: 0.0.1.9000
 Date: 2026-10-23
@@ -28,6 +28,6 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 Roxygen: list(markdown = TRUE)
-URL: https://github.com/fish-trait-network/fish-traitR
-BugReports: https://github.com/fish-trait-network/fish-traitR/issues/
+URL: https://github.com/fish-trait-network/fishtraitR
+BugReports: https://github.com/fish-trait-network/fishtraitR/issues/
 Config/roxygen2/version: 8.0.0
