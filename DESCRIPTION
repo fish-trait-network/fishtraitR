@@ -20,6 +20,7 @@ Imports:
     tools,
     utils
 Suggests:
+    knitr
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
