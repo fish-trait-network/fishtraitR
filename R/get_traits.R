@@ -42,6 +42,9 @@ get_trait_names <- function(record_id = "latest") {
 #' @importFrom jsonlite fromJSON
 #' @importFrom tools R_user_dir
 #' @importFrom utils askYesNo download.file unzip
+#' @importFrom stats weighted.mean
+#' @importFrom mvtnorm rmvnorm
+#' @importFrom graphics hist
 #'
 #' @export
 get_traits <-

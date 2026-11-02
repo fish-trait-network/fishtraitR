@@ -18,7 +18,10 @@ Imports:
     arrow,
     jsonlite,
     tools,
-    utils
+    utils,
+    stats,
+    graphics,
+    mvtnorm
 Suggests:
     knitr
 VignetteBuilder: 
