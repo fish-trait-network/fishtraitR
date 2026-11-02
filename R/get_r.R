@@ -107,9 +107,9 @@ function( K,
   r_numbers = log( Re(eigen(LeslieM_numbers,only.values=TRUE)$values[1]) )
   generation_time = weighted.mean( x=age_vec, w=n0_a * SB_a )
   out = c(
-    intrinsic_growth_rate = r_numbers,
-    generation_time = generation_time,
-    steepness_h = h
+    intrinsic_growth_rate = unname(r_numbers),
+    generation_time = unname(generation_time),
+    steepness_h = unname(h)
   )
 
   # Generate Leslie matrix in biomass
