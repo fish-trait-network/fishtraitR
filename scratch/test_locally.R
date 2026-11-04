@@ -6,6 +6,8 @@ devtools::load_all()
 # TEST
 #######################
 
+library(fishtraitR)
+
 download_traits()
 traits = get_traits("Cyclopterus lumpus")
 
@@ -35,3 +37,5 @@ pred_zi = mapply(
   M = exp(traits_i[,'log(natural_mortality)'])
 )
 hist(pred_zi['intrinsic_growth_rate',])
+
+
