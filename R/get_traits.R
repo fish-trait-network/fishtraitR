@@ -98,6 +98,7 @@ function( taxon,
 #' @param ... not used
 #'
 #' @importFrom phylosem plot.predict_phylosem
+#' @importFrom stats plogis
 #'
 #' @examples
 #' # Get traits for selected species
