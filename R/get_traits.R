@@ -35,7 +35,7 @@ get_trait_names <- function(record_id = "latest") {
 #'
 #' @inheritParams download_traits
 #'
-#' @param taxon_name "Genus species" (with space between) to extract traits
+#' @param taxon "Genus species" (with space between) to extract traits
 #'
 #' @importFrom dplyr filter collect
 #' @importFrom arrow open_dataset
@@ -46,29 +46,73 @@ get_trait_names <- function(record_id = "latest") {
 #' @importFrom mvtnorm rmvnorm
 #' @importFrom graphics hist
 #'
+#' @examples
+#' # Get traits for selected species
+#' download_traits()
+#' traits = get_traits( c("Gadus morhua", "Gadus chalcogrammus") )
+#'
 #' @export
 get_traits <-
-function( taxon_name,
+function( taxon,
           record_id = "latest") {
 
-  ds <- get_dataset(record_id)
+  do_one = function( taxon_name ){
+    ds <- get_dataset(record_id)
+  
+    res <- ds |>
+      dplyr::filter(taxon == !!taxon_name) |>
+      dplyr::collect()
+    nm  <- get_trait_names(record_id)
+  
+    if (nrow(res) == 0) stop("Taxon not found: ", taxon_name)
+  
+    est <- res$mu[[1]]
+    names(est) <- nm
+    p <- length(est)
+  
+    lt <- lower.tri(diag(p), diag = TRUE)
+    S <- matrix(0, p, p)
+    S[lt] <- res$Vlt_vz[[1]]
+    cov <- S + t(S) - diag(diag(S))
+    dimnames(cov) <- list(nm, nm)
+    list( est = est, cov = cov )
+  }
+  all = lapply( taxon, do_one )
+  est = sapply( all, \(x)x$est )
+  cov = sapply( all, \(x)x$cov )
+  cov = array( cov, dim = c(nrow(est), nrow(est), ncol(est)) )
+  dimnames(est) = list( names(all[[1]]$est), taxon )
+  dimnames(cov) = list( names(all[[1]]$est), names(all[[1]]$est), taxon )
+  out = list( est = est, cov = cov )
+  class(out) = "get_traits"
+  return(out)
+}
 
-  res <- ds |>
-    dplyr::filter(taxon == !!taxon_name) |>
-    dplyr::collect()
-  nm  <- get_trait_names(record_id)
+#' @title Plot predicted traits and covariances
+#'
+#' @description Plot extracted traits
+#'
+#' @param x output from \code{\link{get_traits}}
+#' @param variables which traits to plot
+#' @param y not used
+#' @param ... not used
+#'
+#' @importFrom phylosem plot.predict_phylosem
+#'
+#' @examples
+#' # Get traits for selected species
+#' download_traits()
+#' traits = get_traits( c("Gadus morhua", "Gadus chalcogrammus") )
+#' plot( traits, variables = "logMASPS" )
+#' plot( traits, variables = c("log(natural_mortality)", "log(growth_coefficient)") )
+#' @export
+plot.get_traits = 
+function( x, 
+          variables, 
+          y,
+          ... ){
+  
+  class(x) = "predict_phylosem"
+  phylosem:::plot.predict_phylosem(x, variables = variables)
 
-  if (nrow(res) == 0) stop("Taxon not found: ", taxon_name)
-
-  est <- res$mu[[1]]
-  names(est) <- nm
-  p <- length(est)
-
-  lt <- lower.tri(diag(p), diag = TRUE)
-  S <- matrix(0, p, p)
-  S[lt] <- res$Vlt_vz[[1]]
-  cov <- S + t(S) - diag(diag(S))
-  dimnames(cov) <- list(nm, nm)
-
-  list(est = est, cov = cov)
 }

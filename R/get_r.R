@@ -7,7 +7,9 @@
 #' @param K von Bertalanffy growth coefficient for length at age
 #' @param Winf Asymptotic maximum length
 #' @param a_mat age at maturity (in years)
-#' @param MASPS Maximum annual spawners per spawner above replacement
+#' @param CR Compensation ratio, i.e., \eqn{CR = 1 + MLER} or
+#'   \eqn{CR = 1 + MAER / (1-exp(-M))} where MLER and MAER are maximum lifetime
+#'   and maximum annual excess replacement, respectively
 #' @param M Natural mortality rate (per year)
 #' @param t0 Implied age with zero length
 #' @param a_slope slope of logistic maturity at age
@@ -52,7 +54,7 @@ get_r <-
 function( K,
           Winf,
           a_mat,
-          MASPS,
+          CR,
           M,
           t0 = -0.1,
           a_slope = a_mat / 4,
@@ -84,15 +86,15 @@ function( K,
   }
 
   # Maximum lifetime spawners per spawner (MLSPS)
-  MLSPS = 1 + MASPS / (1 - exp(-M))
+  #MLSPS = 1 + MASPS / (1 - exp(-M))
   # Maximum lifetime spawners per spawner (MLSPS)
   #MLSPS = 4 / ( 1/h - 1 )
   # Steepness
-  h = MLSPS / (4 + MLSPS)
+  h = CR / (4 + CR)
   # Unfished spawning biomass per recruit
   SBPR0 = sum( n0_a * SB_a )
   # Maximum annual recruits per spawning biomass (Alpha)
-  Alpha = MLSPS / SBPR0   # Alpha * SBPR_F=0 = MLSPS
+  Alpha = CR / SBPR0   # Alpha * SBPR_F=0 = MLSPS
 
   # Make Leslie matrix
   LeslieM_numbers = matrix(0, nrow=nages, ncol=nages)

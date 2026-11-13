@@ -8,7 +8,7 @@ get_r(
   K,
   Winf,
   a_mat,
-  MASPS,
+  CR,
   M,
   t0 = -0.1,
   a_slope = a_mat/4,
@@ -23,7 +23,9 @@ get_r(
 
 \item{a_mat}{age at maturity (in years)}
 
-\item{MASPS}{Maximum annual spawners per spawner above replacement}
+\item{CR}{Compensation ratio, i.e., \eqn{CR = 1 + MLER} or
+\eqn{CR = 1 + MAER / (1-exp(-M))} where MLER and MAER are maximum lifetime
+and maximum annual excess replacement, respectively}
 
 \item{M}{Natural mortality rate (per year)}
 

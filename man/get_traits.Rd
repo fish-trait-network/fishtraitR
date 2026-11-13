@@ -4,14 +4,20 @@
 \alias{get_traits}
 \title{Get predicted traits and covariances}
 \usage{
-get_traits(taxon_name, record_id = "latest")
+get_traits(taxon, record_id = "latest")
 }
 \arguments{
-\item{taxon_name}{"Genus species" (with space between) to extract traits}
+\item{taxon}{"Genus species" (with space between) to extract traits}
 
 \item{record_id}{Zenodo ID to access}
 }
 \description{
 Extract values and predictive covariance from trait imputation
 for fishes, as stage-3 of the fish-trait-network
+}
+\examples{
+# Get traits for selected species
+download_traits()
+traits = get_traits( c("Gadus morhua", "Gadus chalcogrammus") )
+
 }
