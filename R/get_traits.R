@@ -113,6 +113,9 @@ function( x,
           y,
           ... ){
   
+  if( !requireNamespace("phylosem", quietly = TRUE) ){
+    stop("Please install phylosem to use this function")
+  }
   class(x) = "predict_phylosem"
   plot(x, variables = variables)
 

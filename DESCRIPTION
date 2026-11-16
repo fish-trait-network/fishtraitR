@@ -22,9 +22,9 @@ Imports:
     stats,
     graphics,
     mvtnorm,
-    phylosem (>= 1.1.4.9000)
 Suggests:
-    knitr
+    knitr,
+    phylosem (>= 1.1.4.9000)
 Remotes:
     James-Thorson-NOAA/phylosem@dev
 VignetteBuilder: 
