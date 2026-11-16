@@ -1,0 +1,33 @@
+url: https://fish-trait-network.github.io/fishtraitR/
+development:
+  mode: auto
+template:
+  bootstrap: 5
+
+articles:
+- title: Articles
+  navbar: ~
+  contents:
+  - Introduction
+
+reference:
+- title: 'Accessing traits'
+  desc: |
+    Access trait estimates and predictive uncertainty.
+  contents:
+  - download_traits
+  - get_traits
+
+- title: 'Plot output'
+  desc: |
+    Visualize output
+  contents:
+  - plot.get_traits
+
+- title: 'Derived quantities'
+  desc: |
+    Calcualte derived quantities.
+  contents:
+  - get_r
+
+
