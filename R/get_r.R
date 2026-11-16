@@ -27,7 +27,7 @@
 #'   K = exp(traits$est['log(growth_coefficient)']),
 #'   Winf = exp(traits$est['log(growth_coefficient)']),
 #'   a_mat = exp(traits$est['log(age_maturity)']),
-#'   MASPS = exp(traits$est['logMASPS']),
+#'   CR = 1 + exp(traits$est['phi']),
 #'   M = exp(traits$est['log(natural_mortality)'])
 #' )
 #'
@@ -44,7 +44,7 @@
 #'   K = exp(traits_i[,'log(growth_coefficient)']),
 #'   Winf = exp(traits_i[,'log(growth_coefficient)']),
 #'   a_mat = exp(traits_i[,'log(age_maturity)']),
-#'   MASPS = exp(traits_i[,'logMASPS']),
+#'   CR = 1 + exp(traits_i[,'phi']),
 #'   M = exp(traits_i[,'log(natural_mortality)'])
 #' )
 #' hist(pred_zi['intrinsic_growth_rate',])

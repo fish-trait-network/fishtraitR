@@ -11,32 +11,26 @@ library(fishtraitR)
 download_traits()
 traits = get_traits( "Cyclopterus lumpus" )
 
-pred = list(
-  est = cbind( "Cyclopterus lumpus" = traits$est ),
-  cov = array( traits$cov, dim = c(dim(traits$cov),1), dimnames = c(dimnames(traits$cov), "Cyclopterus lumpus") )
-)
-class(pred) = "predict_phylosem"
-
 #
 plot(
-  pred,
+  traits,
   variables = c( 'log(growth_coefficient)', 'log(natural_mortality)' )
 )
 
 # Extract growth rate
 get_r(
-  K = exp(traits$est['log(growth_coefficient)']),
-  Winf = exp(traits$est['log(weight_infinity)']),
-  a_mat = exp(traits$est['log(age_maturity)']),
-  MASPS = exp(traits$est['logMASPS']),
-  M = exp(traits$est['log(natural_mortality)'])
+  K = exp(traits$est['log(growth_coefficient)',1]),
+  Winf = exp(traits$est['log(weight_infinity)',1]),
+  a_mat = exp(traits$est['log(age_maturity)',1]),
+  CR = 1 + exp(traits$est['phi',1]),
+  M = exp(traits$est['log(natural_mortality)',1])
 )
 
 # Sample from predictive distribution
 traits_i = mvtnorm::rmvnorm(
   n = 250,
-  mean = traits$est,
-  sigma = traits$cov
+  mean = traits$est[,1],
+  sigma = traits$cov[,,1]
 )
 
 # Calculate and plot
@@ -45,7 +39,7 @@ pred_zi = mapply(
   K = exp(traits_i[,'log(growth_coefficient)']),
   Winf = exp(traits_i[,'log(growth_coefficient)']),
   a_mat = exp(traits_i[,'log(age_maturity)']),
-  MASPS = exp(traits_i[,'logMASPS']),
+  CR = 1 + exp(traits_i[,'phi']),
   M = exp(traits_i[,'log(natural_mortality)'])
 )
 hist(pred_zi['intrinsic_growth_rate',])

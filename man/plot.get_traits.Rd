@@ -22,6 +22,10 @@ Plot extracted traits
 # Get traits for selected species
 download_traits()
 traits = get_traits( c("Gadus morhua", "Gadus chalcogrammus") )
+
+# Plot single traits
 plot( traits, variables = "phi" )
+
+# Plot pair of traits
 plot( traits, variables = c("log(natural_mortality)", "log(growth_coefficient)") )
 }
