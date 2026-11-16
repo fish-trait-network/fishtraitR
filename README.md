@@ -1,6 +1,6 @@
 # fishtraitR
 
-[![docs (main)](https://img.shields.io/badge/docs-fishtraitR-orange.svg?colorB=E91E63)](https://fish-trait-network.github.io/fishtraitR/)
+[![docs (main)](https://img.shields.io/badge/docs-fishtraitR-orange.svg?colorB=E91E63)](https://fish-trait-network.github.io/fishtraitR/dev/)
 
 
 Access imputed trait values and predictive variance for fishes, as Distribution stage for the fish-trait-network
