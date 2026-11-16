@@ -114,6 +114,6 @@ function( x,
           ... ){
   
   class(x) = "predict_phylosem"
-  phylosem::plot(x, variables = variables)
+  plot(x, variables = variables)
 
 }
