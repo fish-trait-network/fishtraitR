@@ -26,7 +26,7 @@ reference:
 
 - title: 'Derived quantities'
   desc: |
-    Calcualte derived quantities.
+    Calculate derived quantities.
   contents:
   - get_r
 
