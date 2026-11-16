@@ -70,6 +70,7 @@ function( taxon,
     names(est) <- nm
     p <- length(est)
   
+    #cov = matrix( res$Vlt_vz[[1]], p, p)
     lt <- lower.tri(diag(p), diag = TRUE)
     S <- matrix(0, p, p)
     S[lt] <- res$Vlt_vz[[1]]
@@ -97,14 +98,13 @@ function( taxon,
 #' @param y not used
 #' @param ... not used
 #'
-#' @importFrom phylosem plot.predict_phylosem
 #' @importFrom stats plogis
 #'
 #' @examples
 #' # Get traits for selected species
 #' download_traits()
 #' traits = get_traits( c("Gadus morhua", "Gadus chalcogrammus") )
-#' plot( traits, variables = "logMASPS" )
+#' plot( traits, variables = "phi" )
 #' plot( traits, variables = c("log(natural_mortality)", "log(growth_coefficient)") )
 #' @export
 plot.get_traits = 
@@ -114,6 +114,6 @@ function( x,
           ... ){
   
   class(x) = "predict_phylosem"
-  phylosem:::plot.predict_phylosem(x, variables = variables)
+  phylosem::plot.predict_phylosem(x, variables = variables)
 
 }
