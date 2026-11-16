@@ -39,7 +39,7 @@ Visualize output
 
 ## Derived quantities
 
-Calcualte derived quantities.
+Calculate derived quantities.
 
 - [`get_r()`](https://fish-trait-network.github.io/fishtraitR/dev/reference/get_r.md)
   : Calculate intrinsic growth rate, generation time, and steepness
