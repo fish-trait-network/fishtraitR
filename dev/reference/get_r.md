@@ -73,10 +73,10 @@ get_r(
   K = exp(traits$est['log(growth_coefficient)']),
   Winf = exp(traits$est['log(growth_coefficient)']),
   a_mat = exp(traits$est['log(age_maturity)']),
-  MASPS = exp(traits$est['logMASPS']),
+  CR = 1 + exp(traits$est['phi']),
   M = exp(traits$est['log(natural_mortality)'])
 )
-#> Error in get_r(K = exp(traits$est["log(growth_coefficient)"]), Winf = exp(traits$est["log(growth_coefficient)"]),     a_mat = exp(traits$est["log(age_maturity)"]), MASPS = exp(traits$est["logMASPS"]),     M = exp(traits$est["log(natural_mortality)"])): unused argument (MASPS = exp(traits$est["logMASPS"]))
+#> Error in eigen(LeslieM_numbers, only.values = TRUE): infinite or missing values in 'x'
 
 # Sample from predictive distribution
 traits_i = mvtnorm::rmvnorm(
@@ -92,7 +92,7 @@ pred_zi = mapply(
   K = exp(traits_i[,'log(growth_coefficient)']),
   Winf = exp(traits_i[,'log(growth_coefficient)']),
   a_mat = exp(traits_i[,'log(age_maturity)']),
-  MASPS = exp(traits_i[,'logMASPS']),
+  CR = 1 + exp(traits_i[,'phi']),
   M = exp(traits_i[,'log(natural_mortality)'])
 )
 #> Error: object 'traits_i' not found
