@@ -11,7 +11,7 @@ Distribution stage for the fish-trait-network
 \
 `# Install`\
 `pak``::`[`pak`](https://pak.r-lib.org/reference/pak.html)`(``"fish-trait-network/fishtraitR"``)`\
-[`library`](https://rdrr.io/r/base/library.html)`(`[`"fishtraitR"`](https://github.com/fish-trait-network/fishtraitR)`)`\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`"fishtraitR"`](https://fish-trait-network.github.io/fishtraitR/)`)`\
 \
 `# Download database from Zenodo`\
 [`download_traits`](https://fish-trait-network.github.io/fishtraitR/dev/reference/download_traits.md)`(``)`\

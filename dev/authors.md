@@ -12,12 +12,12 @@ Source:
 
 Thorson JT (2026). *fishtraitR: Access imputed traits for fishes*. R
 package version 0.0.1.9000,
-<https://github.com/fish-trait-network/fishtraitR>.
+<https://fish-trait-network.github.io/fishtraitR/>.
 
 @Manual{,\
   title = {fishtraitR: Access imputed traits for fishes},\
   author = {James T. Thorson},\
   year = {2026},\
   note = {R package version 0.0.1.9000},\
-  url = {https://github.com/fish-trait-network/fishtraitR},\
+  url = {https://fish-trait-network.github.io/fishtraitR/},\
 }

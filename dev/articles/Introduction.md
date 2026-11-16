@@ -28,7 +28,7 @@ uses Zenodo to source values that are intended to be updated.
 Here, we show how *fishtraitR* could be used. We first download the
 
 \
-[`library`](https://rdrr.io/r/base/library.html)`(`[`"fishtraitR"`](https://github.com/fish-trait-network/fishtraitR)`)`\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`"fishtraitR"`](https://fish-trait-network.github.io/fishtraitR/)`)`\
 \
 `# Download database from Zenodo`\
 [`download_traits`](https://fish-trait-network.github.io/fishtraitR/dev/reference/download_traits.md)`(``)`\
