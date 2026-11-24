@@ -58,18 +58,18 @@ function( taxon,
 
   do_one = function( taxon_name ){
     ds <- get_dataset(record_id)
-  
+
     res <- ds |>
       dplyr::filter(taxon == !!taxon_name) |>
       dplyr::collect()
     nm  <- get_trait_names(record_id)
-  
+
     if (nrow(res) == 0) stop("Taxon not found: ", taxon_name)
-  
+
     est <- res$mu[[1]]
     names(est) <- nm
     p <- length(est)
-  
+
     #cov = matrix( res$Vlt_vz[[1]], p, p)
     lt <- lower.tri(diag(p), diag = TRUE)
     S <- matrix(0, p, p)
@@ -111,16 +111,16 @@ function( taxon,
 #' # Plot pair of traits
 #' plot( traits, variables = c("log(natural_mortality)", "log(growth_coefficient)") )
 #' @export
-plot.get_traits = 
-function( x, 
-          variables, 
+plot.get_traits =
+function( x,
+          variables,
           y,
           ... ){
-  
+
   if( !requireNamespace("phylosem", quietly = TRUE) ){
     stop("Please install phylosem to use this function")
   }
   class(x) = "predict_phylosem"
-  plot(x, variables = variables)
+  plot(x, variables = variables, ...)
 
 }
