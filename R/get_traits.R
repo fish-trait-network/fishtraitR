@@ -96,7 +96,7 @@ function( taxon,
 #' @param x output from \code{\link{get_traits}}
 #' @param variables which traits to plot
 #' @param y not used
-#' @param ... not used
+#' @param ... arguments passed to \code{plot.predict_phylosem}
 #'
 #' @importFrom stats plogis
 #'
@@ -121,6 +121,6 @@ function( x,
     stop("Please install phylosem to use this function")
   }
   class(x) = "predict_phylosem"
-  plot(x, variables = variables)
+  plot(x, variables = variables, ...)
 
 }

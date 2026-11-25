@@ -38,4 +38,4 @@ Roxygen: list(markdown = TRUE)
 URL: https://fish-trait-network.github.io/fishtraitR/,
     https://github.com/fish-trait-network/fishtraitR
 BugReports: https://github.com/fish-trait-network/fishtraitR/issues/
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.1

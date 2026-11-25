@@ -2,19 +2,32 @@
 setwd( R'(C:\Users\jtuth\Documents\GitHub\fish-trait-network\fish-traitR)' )
 devtools::load_all()
 
+save_dir = R'(C:\Users\jtuth\Documents\GitHub\future_phylosem)'
+fit = readRDS( file.path(save_dir, "2026-11-12", "fit.RDS") )
+
+
 #######################
 # TEST
 #######################
 
+remotes::install_github("fish-trait-network/fishtraitR")
 library(fishtraitR)
 
+Genus_species = "Micromesistius poutassou"
 download_traits()
-traits = get_traits( "Cyclopterus lumpus" )
+traits = get_traits( Genus_species )   # Blue whiting
+exp(traits$est['log(natural_mortality)',1])
+sqrt(traits$cov['log(natural_mortality)','log(natural_mortality)',1])
+
+#
+fit$data[ which(fit$data_labels == Genus_species), c('log(growth_coefficient)', 'log(natural_mortality)') ]
 
 #
 plot(
   traits,
-  variables = c( 'log(growth_coefficient)', 'log(natural_mortality)' )
+  variables = c( 'log(growth_coefficient)', 'log(natural_mortality)' ),
+  data = fit$data,
+  data_labels = fit$data_labels
 )
 
 # Extract growth rate
@@ -44,7 +57,6 @@ pred_zi = mapply(
 )
 hist(pred_zi['intrinsic_growth_rate',])
 
-
 ####################
 # 2023
 ####################
@@ -54,7 +66,7 @@ edge_names = c( FishBase_and_Morphometrics$tree$tip.label,
                 FishBase_and_Morphometrics$tree$node.label[-1] ) # Removing root
 
 #
-which_g = match( "Cyclopterus lumpus", edge_names )
+which_g = match( Genus_species, edge_names )
 Table2023 = cbind(
   Mean = FishBase_and_Morphometrics$beta_gv[which_g,],
   SE = sqrt(diag(FishBase_and_Morphometrics$Cov_gvv[which_g,,]))

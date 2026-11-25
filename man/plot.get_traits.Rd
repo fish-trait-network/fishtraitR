@@ -13,7 +13,7 @@
 
 \item{y}{not used}
 
-\item{...}{not used}
+\item{...}{arguments passed to \code{plot.predict_phylosem}}
 }
 \description{
 Plot extracted traits
